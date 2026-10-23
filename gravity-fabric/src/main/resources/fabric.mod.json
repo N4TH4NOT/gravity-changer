@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "immersive_portals_gravity",
+  "version": "${version}",
+  "name": "Immersive Portals Gravity",
+  "description": "Gravity Changer 26.2 adapter and shared Minestom gravity API.",
+  "authors": ["N4TH4NOT", "Immersive Portals contributors"],
+  "license": "Apache-2.0",
+  "contact": { "sources": "https://github.com/N4TH4NOT/gravity-changer" },
+  "environment": "*",
+  "entrypoints": { "main": ["io.github.n4th4not.gravity.fabric.GravityPlatform"] },
+  "mixins": ["immersive_portals_gravity.mixins.json"],
+  "depends": { "fabricloader": ">=0.20.1", "minecraft": "26.2", "java": ">=25" },
+  "breaks": { "gravity_api": "*", "gravity_changer": "<1.5.2-beta.5-mc26.2" }
+}
