@@ -1,0 +1,16 @@
+plugins { id 'net.fabricmc.fabric-loom' version '1.19.2' }
+repositories {
+    maven { url = 'https://api.modrinth.com/maven'; content { includeGroup 'maven.modrinth' } }
+}
+dependencies {
+    api project(':gravity-api')
+    include project(':gravity-api')
+    minecraft "com.mojang:minecraft:${minecraft_version}"
+    implementation "net.fabricmc:fabric-loader:${loader_version}"
+    compileOnly "${gravity_path}"
+    testImplementation "${gravity_path}"
+}
+processResources {
+    inputs.property 'version', project.version
+    filesMatching('fabric.mod.json') { expand version: project.version }
+}

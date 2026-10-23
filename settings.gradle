@@ -1,0 +1,8 @@
+pluginManagement {
+    repositories {
+        maven { url = 'https://maven.fabricmc.net/' }
+        gradlePluginPortal()
+    }
+}
+rootProject.name = 'immersive-portals-gravity'
+include 'gravity-api', 'gravity-minestom', 'gravity-fabric'

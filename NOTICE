@@ -1,0 +1,9 @@
+Immersive Portals Gravity
+Extracted from N4TH4NOT/immersive-portals-minestom (Minecraft 26.2),
+based on commit 6cb59045d7559ce5cd9ec9696d8b254e6a2b950e.
+Original Immersive Portals copyright 2020 qouteall and contributors (Apache-2.0).
+Gravity integration and Minestom bridge: N4TH4NOT and contributors.
+Gravity frame mappings adapted from NightEpiphany's Gravity Changer (MIT),
+see licenses/GravityChanger-MIT.txt. The upstream mod is not redistributed here.
+Files were moved and adapted to remove dependencies on the portal implementation.
+Legacy Java packages are intentionally retained for binary compatibility.

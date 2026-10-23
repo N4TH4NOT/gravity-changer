@@ -1,0 +1,29 @@
+plugins { id 'base' }
+allprojects {
+    group = 'io.github.n4th4not.gravity'
+    version = rootProject.gravity_version
+    repositories { mavenCentral() }
+}
+subprojects {
+    apply plugin: 'maven-publish'
+    plugins.withId('java') {
+        java { toolchain.languageVersion = JavaLanguageVersion.of(25); withSourcesJar() }
+        tasks.withType(JavaCompile).configureEach { options.release = 25 }
+        tasks.withType(Jar).configureEach {
+            from(rootProject.file('LICENSE'))
+            from(rootProject.file('NOTICE'))
+            from(rootProject.file('licenses')) { into 'META-INF/licenses' }
+            preserveFileTimestamps = false
+            reproducibleFileOrder = true
+        }
+        dependencies {
+            testImplementation platform('org.junit:junit-bom:5.14.1')
+            testImplementation 'org.junit.jupiter:junit-jupiter'
+            testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+        }
+        test { useJUnitPlatform() }
+        publishing { publications { mavenJava(MavenPublication) { from components.java } } }
+    }
+}
+tasks.named('assemble') { dependsOn subprojects.collect { it.tasks.named('assemble') } }
+tasks.named('check') { dependsOn subprojects.collect { it.tasks.named('check') } }
