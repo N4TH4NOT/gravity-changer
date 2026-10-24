@@ -12,6 +12,10 @@ public final class GravitySync {
         var old = sent.get(key);
         if (!force && old != null && old.state().equals(state) && tick - old.tick() < 100)
             return false;
+        return recordSent(key, state, tick);
+    }
+    /** Another authoritative packet, such as a teleport correction, already carried this state. */
+    public boolean recordSent(GravityIdentity key, GravityState state, long tick) {
         if (sent.size() >= 4096 && !sent.containsKey(key)) return false;
         sent.put(key, new Sent(state, tick));
         return true;
