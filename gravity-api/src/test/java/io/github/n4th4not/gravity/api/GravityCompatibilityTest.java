@@ -86,4 +86,17 @@ class GravityCompatibilityTest {
         sync.expire(305);
         assertTrue(sync.shouldSend(key, new GravityState(GravityDirection.EAST), 305, false));
     }
+
+    @Test
+    void stateAlreadyIncludedInACorrectionDoesNotNeedASecondPacket() {
+        var key = new GravityIdentity("demo:a", 7, UUID.randomUUID());
+        var state = new GravityState(GravityDirection.NORTH, 12);
+        var sync = new GravitySync();
+        assertTrue(sync.recordSent(key, state, 10));
+        assertFalse(sync.shouldSend(key, state, 12, false));
+        assertTrue(sync.shouldSend(key, state, 14, true));
+        assertTrue(sync.shouldSend(key, new GravityState(GravityDirection.WEST, 12), 16, false));
+        assertFalse(sync.shouldSend(key, new GravityState(GravityDirection.WEST, 12), 115, false));
+        assertTrue(sync.shouldSend(key, new GravityState(GravityDirection.WEST, 12), 116, false));
+    }
 }
