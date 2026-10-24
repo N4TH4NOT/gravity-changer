@@ -82,6 +82,10 @@ leur direction et leur intensité. Les messages comportent le monde, l’identif
 numérique et l’UUID de l’entité ; ils peuvent attendre son apparition sans
 s’appliquer à un identifiant recyclé. Les caches et les messages restent bornés.
 Les états sont rafraîchis après un changement, une apparition ou périodiquement.
+Une correction de téléportation contient déjà l’état de gravité autoritaire :
+le SDK peut l’enregistrer avec `GravitySync.recordSent` pour éviter un second
+message `Gravity` immédiatement après. Une nouvelle apparition force toujours
+la transmission ; le rappel périodique reste distinct de cette déduplication.
 
 Pour les entités passives, le service conserve les collisions balayées de
 Minestom et applique accélération et frottement dans le référentiel de gravité.
