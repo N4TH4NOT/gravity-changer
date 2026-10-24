@@ -1,6 +1,11 @@
-# Conventions demandées par l’utilisateur pour les interventions de l’assistant
+# Contribution conventions
 
-- Utiliser l’identité Git `Codex (GPT-6.1 Sol) <codex@openai.com>` comme auteur et committer ; identifier formellement l’outil et le modèle, sans utiliser le nom personnel de l’utilisateur ni le compte GitHub connecté.
-- Organiser les changements en commits cohérents et faciles à auditer, séparés par catégorie : API, Fabric, Minestom, tests, compilation/CI, documentation.
-- Travailler sur la branche existante du chantier ; ne pas créer de branche supplémentaire par défaut.
-- Conserver les noms publics historiques et le format réseau pour la compatibilité avec Immersive Portals.
+[English](AGENTS.md) · [Français](AGENTS.fr.md)
+
+These rules apply to assistant contributions in this repository.
+
+- Use `Codex (GPT-6.1 Sol) <codex@openai.com>` as Git author and committer for assistant work. Use Git to preserve both identities; never substitute the connected user's name or account.
+- Write commit subjects and bodies in English. Keep commits coherent and auditable, separated by API/protocol, Fabric, Minestom, tests, build/CI or documentation. Avoid a single bulk commit or artificial follow-up fixes.
+- Continue on the existing task branch; do not create an additional branch by default.
+- Preserve public Java APIs and wire compatibility when extracting gravity.
+- Write concise documentation for experienced Minecraft/Minestom developers. Use English by default with paired French `<name>.fr.md` files (`README.fr.md` for `README.md`) and reciprocal language links. Maintain both languages together; link to source/root configuration instead of duplicating obvious details.
