@@ -13,6 +13,9 @@ public class GravityAdapter {
     public Vec3 getEyeOffset(Entity entity) { return new Vec3(0, entity.getEyeHeight(), 0); }
     public Direction getGravityDirection(Entity entity) { return Direction.DOWN; }
     public Direction getBaseGravityDirection(Entity entity) { return Direction.DOWN; }
+    public Direction getGravityDirectionWithBase(Entity entity, Direction baseDirection) {
+        return getGravityDirection(entity);
+    }
     public GravityState getState(Entity entity) { return GravityState.DEFAULT; }
     public void applyState(Entity entity, GravityState state, boolean snapVisualRotation) {}
     public void setClientPlayerGravityDirection(Player player, Direction direction) {}

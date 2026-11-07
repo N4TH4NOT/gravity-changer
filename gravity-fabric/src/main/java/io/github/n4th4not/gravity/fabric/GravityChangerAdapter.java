@@ -13,6 +13,7 @@ import io.github.n4th4not.immersiveportals.protocol.GravityState;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 
@@ -37,6 +38,17 @@ public final class GravityChangerAdapter extends GravityAdapter {
         return attribute == null
                 ? Direction.DOWN
                 : DirectionalAttribute.toDirection(attribute.getBaseValue());
+    }
+
+    @Override
+    public Direction getGravityDirectionWithBase(Entity entity, Direction baseDirection) {
+        if (!(entity instanceof LivingEntity living)) return getGravityDirection(entity);
+        var current = living.getAttribute(ModAttributes.GRAVITY_DIRECTION);
+        if (current == null) return getGravityDirection(entity);
+        var preview = new AttributeInstance(current.getAttribute(), ignored -> {});
+        preview.replaceFrom(current);
+        preview.setBaseValue(DirectionalAttribute.valueOf(baseDirection));
+        return DirectionalAttribute.toDirection(preview.getValue());
     }
 
     @Override
